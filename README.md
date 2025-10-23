@@ -1,6 +1,7 @@
-# Eco-Friendly E-Commerce Platform
+# Eco Fashion Retailer - Sustainable Shopping
 
-A sustainable e-commerce platform that promotes eco-friendly products across various categories including clothing, electronics, food, and beauty products.
+## Project Description
+Eco Fashion Retailer is an eco-friendly e-commerce website that promotes sustainable fashion and ethical shopping. Users can browse and purchase clothing, accessories, and lifestyle products made from sustainable materials, with minimal environmental impact. The platform provides features like product categories, real-time product sliders, customer reviews, and an eco-reward system for promoting responsible shopping.
 
 ## Features
 
@@ -115,31 +116,6 @@ project/
 - Font Awesome
 - Swiper.js
 - Local Storage API
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contact
-
-For any queries or support, please contact:
-- Email: [Your Email]
-- Website: [Your Website]
 
 ## Acknowledgments
 
