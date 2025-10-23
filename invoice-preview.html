@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles1.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Invoice Preview - Green Earth</title>
+    <style>
+        .invoice-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+        }
+        .invoice-preview {
+            background: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #28a745;
+        }
+        .invoice-header h1 {
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+        .invoice-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .invoice-section {
+            margin-bottom: 2rem;
+        }
+        .invoice-section h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+        .download-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+        .btn-outline {
+            background-color: white;
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+        .btn-outline:hover {
+            background-color: #f8f9fa;
+            color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="logo.jpg" alt="logo">Eco-Fashion Retailer
+        </a>
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="index.html#features">features</a>
+            <a href="index.html#products">products</a>
+            <a href="index.html#categories">categories</a>
+        </nav>
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            <a href="cartpage.html" class="cart-icon">
+                <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                <span id="cart-count" class="cart-count-badge">0</span>
+            </a>
+            <a href="login_page.html">
+                <div class="fas fa-user" id="login-btn"></div>
+            </a>
+        </div>
+    </header>
+
+    <div class="invoice-container">
+        <div class="invoice-preview" id="invoice-content">
+            <div class="invoice-header">
+                <h1>INVOICE</h1>
+                <p>Green Earth - Eco-Friendly Products</p>
+            </div>
+            
+            <div class="invoice-details">
+                <div>
+                    <h3>Bill To</h3>
+                    <p id="customer-name"></p>
+                    <p id="customer-address"></p>
+                    <p id="customer-phone"></p>
+                </div>
+                <div>
+                    <h3>Invoice Details</h3>
+                    <p><strong>Invoice Number:</strong> <span id="invoice-number"></span></p>
+                    <p><strong>Date:</strong> <span id="invoice-date"></span></p>
+                    <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
+                </div>
+            </div>
+            
+            <div class="invoice-section">
+                <h3>Order Items</h3>
+                <div id="invoice-items"></div>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">₹0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>₹50.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (5%)</span>
+                    <span id="tax">₹0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Total Amount</span>
+                    <span id="total">₹0.00</span>
+                </div>
+            </div>
+            
+            <div class="invoice-section">
+                <h3>Terms & Conditions</h3>
+                <p>1. All items are non-refundable unless damaged during shipping.</p>
+                <p>2. Please keep this invoice for your records.</p>
+                <p>3. For any queries, contact our customer support.</p>
+            </div>
+        </div>
+
+        <div class="download-options">
+            <button class="btn btn-outline" onclick="downloadInvoice('pdf')">
+                <i class="fas fa-file-pdf"></i> Download PDF
+            </button>
+            <button class="btn btn-outline" onclick="downloadInvoice('png')">
+                <i class="fas fa-image"></i> Download PNG
+            </button>
+            <button class="btn btn-primary" onclick="window.print()">
+                <i class="fas fa-print"></i> Print Invoice
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const order = JSON.parse(localStorage.getItem('currentOrder')) || {};
+            const invoiceItems = document.getElementById('invoice-items');
+            const subtotalElement = document.getElementById('subtotal');
+            const taxElement = document.getElementById('tax');
+            const totalElement = document.getElementById('total');
+            
+            // Set invoice details
+            document.getElementById('invoice-number').textContent = 'INV' + Date.now();
+            document.getElementById('invoice-date').textContent = new Date().toLocaleDateString();
+            document.getElementById('payment-method').textContent = order.paymentMethod || 'Credit Card';
+            document.getElementById('customer-address').textContent = order.address || 'No address provided';
+            
+            // Calculate and display order summary
+            let subtotal = 0;
+            order.items.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'summary-row';
+                itemElement.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>₹${itemTotal.toFixed(2)}</span>
+                `;
+                invoiceItems.appendChild(itemElement);
+            });
+            
+            const shipping = 50;
+            const tax = subtotal * 0.05;
+            const total = subtotal + shipping + tax;
+            
+            subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
+            taxElement.textContent = `₹${tax.toFixed(2)}`;
+            totalElement.textContent = `₹${total.toFixed(2)}`;
+        });
+
+        function downloadInvoice(format) {
+            const element = document.getElementById('invoice-content');
+            const opt = {
+                margin: 1,
+                filename: 'invoice.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            if (format === 'pdf') {
+                html2pdf().set(opt).from(element).save();
+            } else if (format === 'png') {
+                html2canvas(element).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'invoice.png';
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</body>
+</html> 

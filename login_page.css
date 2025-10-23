@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-image: url(bgd3.jpg);
+    background-size: cover;
+    
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+}
+
+.logo{
+    height: 80px;
+    width: 80px;
+    background-image: url(logo.jpg);
+    background-size: cover;
+    margin-right: 50px;
+}
+.logoname{
+    display: flex;
+    align-items: center;
+   
+}
+a{
+    text-decoration: none;
+    color: white;
+    transform: background-color 1s ease-in 0s;
+}
+a:hover{
+    background-color: rgb(195, 156, 84);
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    font-size: 20px;
+    position: relative;
+    right: 0;
+    margin-left: auto;
+}
+
+.mainbody{
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top: 50px;
+}
+.content{
+    color: white;
+    height: 400px;
+    text-align: left;
+    background-color: grey;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    background: transparent;
+}
+h1{
+    color: #ffffc3;
+}
+#headingline2{
+    margin-bottom: 20px;
+}
+#contentpara{
+    font-size: 18px;
+}
+.login{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid white;
+    backdrop-filter:blur(20px);
+    color: white;
+    height: 400px;
+    width: 30vw;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#signup{
+    color: orange;
+}
+.box{
+    height: 25px;
+    width: 50%;
+    border-radius: 10px;
+}
+#loginbutton{
+    height: 30px;
+    width: 20%;
+    border-radius: 10px;
+    transform:background-color 2s ease-in 0s ;
+}
+#loginbutton:active{
+    background-color: darkgoldenrod;
+}
+.divend{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logosdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.symdiv{
+    height: 50px;
+    width: 255px;
+    background-color: white;
+    margin-top: 10px;
+}

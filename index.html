@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles1.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Eco Fashion Retailer - Sustainable Shopping</title>
+    <style>
+        /* Header Fix */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        main {
+            padding-top: 80px;
+        }
+
+        .product-slider {
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        .product-slider .swiper-slide {
+            width: 250px !important;
+            height: 300px !important;
+            margin: 0 10px;
+        }
+        .product-slider .box {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.8rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .product-slider .box img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+        .product-slider .box h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        .product-slider .box .price {
+            font-size: 1rem;
+            color: #28a745;
+            margin-bottom: 0.3rem;
+        }
+        .product-slider .box .stars {
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+        .product-slider .box .add-to-cart {
+            margin-top: auto;
+            padding: 0.4rem 0.8rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .product-slider .box .add-to-cart:hover {
+            background: #218838;
+        }
+
+        section.features {
+            padding: 4rem 0;
+        }
+        section.features .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        section.features .box-container .box {
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        section.features .box-container .box:hover {
+            transform: translateY(-5px);
+        }
+        section.features .box-container .box i {
+            font-size: 2.5rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+        section.features .box-container .box h3 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        section.features .box-container .box p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        section.features .box-container .box .btn {
+            display: none;
+        }
+
+        .features .box i,
+        .features .box h3,
+        .features .box p {
+            font-size: inherit;
+        }
+
+        .features .box h3 {
+            font-size: 2rem !important;
+        }
+        .features .box p {
+            font-size: 1.5rem !important;
+        }
+
+        .review {
+            padding: 4rem 0;
+        }
+        .review-slider {
+            padding: 2rem 0;
+        }
+        .review-slider .swiper-slide {
+            width: 300px !important;
+        }
+        .review-slider .box {
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            height: 100%;
+        }
+        .review-slider .box p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .review-slider .box h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .review-slider .box .stars {
+            color: #ffc107;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 4px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .search-form input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 0.5rem;
+            width: 100%;
+            color: #000 !important;
+            font-size: 1rem;
+        }
+        .search-button {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        .search-button i {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        /* Logo Styles */
+        .header .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .header .logo img {
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+        .footer .box h3 {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            color: #333;
+        }
+        .footer .box h3 img {
+            height: 30px;
+            width: 30px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="./images/logo.jpg" alt="logo">Eco-Fashion Retailer
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#features">features</a>
+            <a href="#products">products</a>
+            <a href="#categories">categories</a>
+        </nav>
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            <a href="cartpage.html" class="cart-icon">
+                <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                <span id="cart-count" class="cart-count-badge">0</span>
+            </a>
+            <a href="login_page.html">
+                <div class="fas fa-user" id="login-btn"></div>
+            </a>
+        </div>
+        
+        <div class="search-box">
+            <form class="search-form">
+                <input type="text" placeholder="Search products..." class="search-input">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results"></div>
+            </form>
+        </div>
+        <div class="shopping-cart">
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="./images/watermelon.jpg" alt="watermelon">
+                <div class="content">
+                    <h3>Watermelon</h3>
+                    <span class="price">₹ 20/-</span>
+                    <span class="quantity">Qty: 1</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="./images/mango.jpg" alt="mango">
+                <div class="content">
+                    <h3>Mango</h3>
+                    <span class="price">₹ 100/-</span>
+                    <span class="quantity">Qty: 1</span>
+                </div>
+            </div>
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="./images/pomegranate.jpg" alt="pomegranate">
+                <div class="content">
+                    <h3>Pomegranate</h3>
+                    <span class="price">₹ 120/-</span>
+                    <span class="quantity">Qty: 1</span>
+                </div>
+            </div>
+            <div class="total">
+                Total: ₹ 240/-
+            </div>
+            <a href="#" class="btn">Checkout</a>
+        </div>
+        <form class="login-form">
+            <h3>Login Now</h3>
+            <input type="email" class="box" placeholder="Email-ID">
+            <input type="password" class="box" placeholder="Password">
+            <p>Forget your Password <a href="#">Click here</a></p>
+            <p>Don't have any Account <a href="#">Create New Account</a></p>
+            <input type="submit" value="Login Now" class="btn">
+        </form>
+    </header>
+    <main>
+        <section class="home" id="home">
+            <div class="content">
+                <h3>A marketplace where sustainability meets style</h3>
+                <p style="color: #b1a9a9;">Support ethical brands, shop smart, and make fashion choices that protect the environment. Choose sustainable materials, fair wages, and eco-friendly production for a better future.</p>
+                <a href="#" id="shopnow">Shop Now</a>
+            </div>
+        </section>
+        
+        <section class="products" id="products">
+            <h1 class="heading">Our Products</h1>
+            <div class="swiper product-slider">
+                <div class="swiper-wrapper">
+                    <!-- Clothing Products -->
+                    <div class="swiper-slide box">
+                        <img src="./images/organic-cotton-tshirt.jpg" alt="Organic T-Shirt">
+                        <h3>Organic Cotton T-Shirt</h3>
+                    </div>
+                    <div class="swiper-slide box">
+                        <img src="./images/hemp-jeans.jpg" alt="Hemp Jeans">
+                        <h3>Hemp Denim Jeans</h3>
+                    </div>
+                    <div class="swiper-slide box">
+                        <img src="./images/bamboo-dress.jpg" alt="Bamboo Dress">
+                        <h3>Bamboo Fabric Dress</h3>
+                    </div>
+                    <div class="swiper-slide box">
+                        <img src="./images/recycled-wool-sweater.jpg" alt="Wool Sweater">
+                        <h3>Recycled Wool Sweater</h3>
+                    </div>
+                    <div class="swiper-slide box">
+                        <img src="./images/linen-shirt.jpg" alt="Linen Shirt">
+                        <h3>Organic Linen Shirt</h3>
+                    </div>
+                    <div class="swiper-slide box">
+                        <img src="./images/cork-sandals.jpg" alt="Cork Sandals">
+                        <h3>Cork Sandals</h3>
+                    </div>
+                    <div class="swiper-slide box">
+                        <img src="./images/recycled-jacket.jpg" alt="Recycled Jacket">
+                        <h3>Recycled Polyester Jacket</h3>
+                    </div>
+                    <div class="swiper-slide box">
+                        <img src="./images/hemp-bag.jpg" alt="Hemp Bag">
+                        <h3>Hemp Canvas Bag</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="categories" id="categories">
+            <h1 class="heading">Product Categories</h1>
+            <div class="box-container">
+                <div class="box">
+                    <img src="./images/clothing.jpg" alt="Clothing">
+                    <h3>Clothing</h3>
+                    <p>Sustainable Fashion</p>
+                    <a href="clothing.html" class="btn">Shop Now</a>
+                </div>
+                <div class="box">
+                    <img src="./images/electronics.jpg" alt="Electronics">
+                    <h3>Electronics</h3>
+                    <p>Eco-Friendly Tech</p>
+                    <a href="electronics.html" class="btn">Shop Now</a>
+                </div>
+                <div class="box">
+                    <img src="./images/food.jpg" alt="Food">
+                    <h3>Food</h3>
+                    <p>Organic & Natural</p>
+                    <a href="food.html" class="btn">Shop Now</a>
+                </div>
+                <div class="box">
+                    <img src="./images/beauty.jpg" alt="Beauty">
+                    <h3>Beauty</h3>
+                    <p>Natural Products</p>
+                    <a href="beauty.html" class="btn">Shop Now</a>
+                </div>
+            </div>
+        </section>
+        <section class="features" id="features">
+            <h1 class="heading">Our Features</h1>
+            <div class="box-container">
+                <div class="box">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainable Shopping</h3>
+                    <p>Every product in our store is carefully selected for its eco-friendly materials and sustainable production methods. We ensure minimal environmental impact while maintaining high quality.</p>
+                </div>
+                <div class="box">
+                    <i class="fas fa-recycle"></i>
+                    <h3>Eco-Reward System</h3>
+                    <p>Earn points for every sustainable purchase and redeem them for exclusive discounts. The more eco-friendly your choices, the more rewards you earn!</p>
+                </div>
+                <div class="box">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certified Products</h3>
+                    <p>All our products come with detailed sustainability certifications and transparent information about their environmental impact and production process.</p>
+                </div>
+            </div>
+        </section>
+        <section class="review" id="review">
+            <h1 class="heading">Customer Reviews</h1>
+            <div class="swiper review-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide box">
+                        <p>"I'm impressed with the quality of eco-friendly products. The organic cotton t-shirt is so comfortable and knowing it's sustainable makes it even better!"</p>
+                        <h3>Priya Sharma</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="swiper-slide box">
+                        <p>"The bamboo fabric dress is amazing! It's breathable, stylish, and perfect for Indian weather. Great service and fast delivery too."</p>
+                        <h3>Rahul Verma</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="swiper-slide box">
+                        <p>"I love the eco-reward system! It's great to be rewarded for making sustainable choices. The organic beauty products are also fantastic."</p>
+                        <h3>Ananya Patel</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="swiper-slide box">
+                        <p>"The hemp denim jeans are my new favorite! They're durable, comfortable, and look great. Plus, knowing they're eco-friendly makes me feel good about my purchase."</p>
+                        <h3>Vikram Singh</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="swiper-slide box">
+                        <p>"The natural beauty products are gentle on my skin and effective. I appreciate the detailed information about ingredients and their benefits."</p>
+                        <h3>Meera Kapoor</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="footer" id="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3><img src="./images/logo.jpg" alt="logo">Eco Fashion Retailer</h3>
+                <p>Contact us for any Help!</p>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f" style="color: #28a745;"></a>
+                    <a href="#" class="fab fa-twitter" style="color: #28a745;"></a>
+                    <a href="#" class="fab fa-instagram" style="color: #28a745;"></a>
+                    <a href="#" class="fab fa-linkedin" style="color: #28a745;"></a>
+                </div>
+            </div>
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="#" class="links" style="color: #28a745;"><i class="fas fa-phone" style="color: black;"></i>+91 9999555413</a>
+                <a href="#" class="links" style="color: #28a745;"><i class="fas fa-phone" style="color: black;"></i>+91 8885554467</a>
+            </div>
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a href="#" class="links" style="color: #28a745;"><i class="fas fa-arrow-right" style="color: black;"></i>Home</a>
+                <a href="#" class="links" style="color: #28a745;"><i class="fas fa-arrow-right" style="color: black;"></i>Features</a>
+                <a href="#" class="links" style="color: #28a745;"><i class="fas fa-arrow-right" style="color: black;"></i>Products</a>
+                <a href="#" class="links" style="color: #28a745;"><i class="fas fa-arrow-right" style="color: black;"></i>Categories</a>
+                <a href="#" class="links" style="color: #28a745;"><i class="fas fa-arrow-right" style="color: black;"></i>Review</a>
+            </div>
+        </div>
+    </section>
+   
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="./main1.js"></script>
+    <script>
+        // Initialize product slider
+        const productSlider = new Swiper('.product-slider', {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            loop: true,
+            loopedSlides: 20,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            speed: 1000,
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+            on: {
+                init: function() {
+                    this.autoplay.start();
+                },
+                touchEnd: function() {
+                    this.autoplay.start();
+                }
+            }
+        });
+
+        const reviewSlider = new Swiper('.review-slider', {
+            slidesPerView: 'auto',
+            spaceBetween: 20,
+            loop: true,
+            loopedSlides: 10,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            speed: 1000,
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+            },
+            on: {
+                init: function() {
+                    this.autoplay.start();
+                },
+                touchEnd: function() {
+                    this.autoplay.start();
+                }
+            }
+        });
+
+        // Duplicate slides for continuous scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const productWrapper = document.querySelector('.product-slider .swiper-wrapper');
+            const reviewWrapper = document.querySelector('.review-slider .swiper-wrapper');
+            
+            // Duplicate product slides
+            const productSlides = productWrapper.innerHTML;
+            productWrapper.innerHTML = productSlides + productSlides + productSlides;
+            
+            // Duplicate review slides
+            const reviewSlides = reviewWrapper.innerHTML;
+            reviewWrapper.innerHTML = reviewSlides + reviewSlides + reviewSlides;
+        });
+
+        // Add to Cart functionality
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: parseFloat(price),
+                    quantity: 1,
+                    image: image
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.textContent = 'Added to cart!';
+            document.body.appendChild(successMessage);
+            
+            setTimeout(() => {
+                successMessage.remove();
+            }, 2000);
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const name = this.getAttribute('data-name');
+                    const price = this.getAttribute('data-price');
+                    const image = this.closest('.box').querySelector('img').src;
+                    addToCart(name, price, image);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

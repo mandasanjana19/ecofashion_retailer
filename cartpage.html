@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles1.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Eco Fashion Retailer - Shopping Cart</title>
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 2rem;
+        }
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .item-price {
+            color: #28a745;
+            font-weight: 500;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.25rem;
+        }
+        .remove-btn {
+            color: #dc3545;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        .order-summary {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .proceed-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        .proceed-btn:hover {
+            background-color: #218838;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .empty-cart i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+        .empty-cart p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .empty-cart .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="./images/logo.jpg" alt="logo">Eco-Fashion Retailer
+        </a>
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="index.html#features">features</a>
+            <a href="index.html#products">products</a>
+            <a href="index.html#categories">categories</a>
+        </nav>
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            <a href="cartpage.html" class="cart-icon">
+                <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                <span id="cart-count" class="cart-count-badge">0</span>
+            </a>
+            <a href="login_page.html">
+                <div class="fas fa-user" id="login-btn"></div>
+            </a>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <h2 class="mb-4">Your Shopping Cart</h2>
+        <div id="cart-content">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+        <div class="order-summary">
+            <h3 class="mb-3">Order Summary</h3>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">₹0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>₹50.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax (5%)</span>
+                <span id="tax">₹0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Total</span>
+                <span id="total">₹0.00</span>
+            </div>
+            <button class="proceed-btn" onclick="window.location.href='place-order.html'">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a href="index.html" class="links"><i class="fas fa-arrow-right"></i>Home</a>
+                <a href="index.html#features" class="links"><i class="fas fa-arrow-right"></i>Features</a>
+                <a href="index.html#products" class="links"><i class="fas fa-arrow-right"></i>Products</a>
+                <a href="index.html#categories" class="links"><i class="fas fa-arrow-right"></i>Categories</a>
+            </div>
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="#" class="links"><i class="fas fa-phone"></i>+91 9999555413</a>
+                <a href="#" class="links"><i class="fas fa-phone"></i>+91 8885554467</a>
+            </div>
+            <div class="box">
+                <h3>Follow Us</h3>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./main1.js"></script>
+    <script>
+        // Function to update cart display
+        function updateCartDisplay() {
+            const cartContent = document.getElementById('cart-content');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                        <a href="index.html" class="btn">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let cartItemsHTML = '<div class="cart-items">';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                cartItemsHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">₹${item.price.toFixed(2)}</div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity('${item.name}', ${item.quantity - 1})">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', this.value)">
+                                <button class="quantity-btn" onclick="updateQuantity('${item.name}', ${item.quantity + 1})">+</button>
+                            </div>
+                        </div>
+                        <div class="remove-btn" onclick="removeFromCart('${item.name}')">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartItemsHTML += '</div>';
+            cartContent.innerHTML = cartItemsHTML;
+
+            // Update order summary
+            const shipping = 50;
+            const tax = subtotal * 0.05;
+            const total = subtotal + shipping + tax;
+
+            document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `₹${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `₹${total.toFixed(2)}`;
+        }
+
+        // Function to update quantity
+        function updateQuantity(name, newQuantity) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const itemIndex = cart.findIndex(item => item.name === name);
+            
+            if (itemIndex !== -1) {
+                if (newQuantity < 1) {
+                    cart.splice(itemIndex, 1);
+                } else {
+                    cart[itemIndex].quantity = parseInt(newQuantity);
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+                updateCartCount();
+            }
+        }
+
+        // Function to remove item
+        function removeFromCart(name) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const newCart = cart.filter(item => item.name !== name);
+            localStorage.setItem('cart', JSON.stringify(newCart));
+            updateCartDisplay();
+            updateCartCount();
+        }
+
+        // Function to update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        // Update cart display on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
